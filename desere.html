@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Rounded Corner Example</title>
+</head>
+<body>
+    <canvas id="myCanvas" width="400" height="400"></canvas>
+    
+    <script>
+        const canvas = document.getElementById('myCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Function to draw a rectangle with rounded corners
+        function drawRoundedRect(x, y, width, height, radius) {
+            ctx.beginPath();
+            ctx.moveTo(x + radius, y);
+            ctx.lineTo(x + width - radius, y);
+            ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+            ctx.lineTo(x + width, y + height - radius);
+            ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+            ctx.lineTo(x + radius, y + height);
+            ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+            ctx.lineTo(x, y + radius);
+            ctx.quadraticCurveTo(x, y, x + radius, y);
+            ctx.closePath();
+        }
+
+        // Initial y-coordinate value
+        let dy = 50;
+        // Some other y-coordinate value
+        let gy = 150;
+
+        // Adjust dy based on gy
+        dy = gy - dy; // This would set dy to 100
+
+        // Draw the rectangle
+        ctx.fillStyle = '#00f';
+        drawRoundedRect(50, dy, 200, 100, 20);
+        ctx.fill();
+    </script>
+</body>
+</html>
